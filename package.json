@@ -1,0 +1,65 @@
+{
+  "name": "@kashif-ghafoor/provider-upload-aws-custom-s3",
+  "version": "4.15.1",
+  "description": "AWS custom S3 provider for strapi upload",
+  "keywords": [
+    "upload",
+    "aws",
+    "s3",
+    "strapi"
+  ],
+  "homepage": "https://strapi.io",
+  "bugs": {
+    "url": "https://github.com/strapi/strapi/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/strapi/strapi.git"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "author": {
+    "name": "Strapi Solutions SAS",
+    "email": "hi@strapi.io",
+    "url": "https://strapi.io"
+  },
+  "maintainers": [
+    {
+      "name": "Strapi Solutions SAS",
+      "email": "hi@strapi.io",
+      "url": "https://strapi.io"
+    }
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "source": "./src/index.ts",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "./dist"
+  ],
+  "scripts": {
+    "build": "pack-up build",
+    "clean": "rimraf ./dist",
+    "lint": "eslint .",
+    "prepublishOnly": "yarn clean && yarn build",
+    "test:unit": "jest",
+    "test:unit:watch": "jest --watch",
+    "watch": "pack-up watch"
+  },
+  "dependencies": {
+    "@kashif-ghafoor/provider-upload-aws-custom-s3": "^4.15.1",
+    "aws-sdk": "2.1472.0",
+    "lodash": "4.17.21"
+  },
+  "devDependencies": {
+    "@strapi/pack-up": "workspace:*",
+    "@tsconfig/node18": "18.2.2",
+    "@types/jest": "29.5.2",
+    "eslint-config-custom": "4.15.1",
+    "rimraf": "^5.0.5",
+    "tsconfig": "4.15.1"
+  },
+  "engines": {
+    "node": ">=18.0.0 <=20.x.x",
+    "npm": ">=6.0.0"
+  }
+}
