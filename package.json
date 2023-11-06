@@ -1,5 +1,5 @@
 {
-  "name": "@kashif-ghafoor/provider-upload-aws-custom-s3",
+  "name": "@kidsontheyard/provider-upload-aws-custom-s3",
   "version": "4.15.1",
   "description": "AWS custom S3 provider for strapi upload",
   "keywords": [
