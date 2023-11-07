@@ -41,6 +41,7 @@ interface InitOptions extends Partial<AWS.S3.ClientConfiguration> {
       ACL?: string;
       signedUrlExpires?: string;
     };
+    dirTimeScope: "sec" | "min" | "hour" | "day";
   };
 }
 
@@ -66,12 +67,31 @@ export default {
       const year = date.getFullYear();
       const month = String(date.getMonth() + 1).padStart(2, "0");
       const day = String(date.getDate()).padStart(2, "0");
-      const time = String(date.getTime()); // unix epoch
+      const hours = String(date.getHours()).padStart(2, "0");
+      const minutes = String(date.getMinutes()).padStart(2, "0");
+      const seconds = String(date.getSeconds()).padStart(2, "0");
+
+      let structuredPath = `${year}/${month}/`;
+
+      const timeDetail = s3Options.dirTimeScope ?? "hour";
+
+      // Add additional time detail based on the specified granularity
+      switch (timeDetail) {
+        case "day":
+          structuredPath += `${day}/`;
+          break;
+        case "hour":
+          structuredPath += `${day}/${hours}/`;
+          break;
+        case "min":
+          structuredPath += `${day}/${hours}/${minutes}/`;
+          break;
+        case "sec":
+          structuredPath += `${day}/${hours}/${minutes}/${seconds}/`;
+          break;
+      }
 
       const path = file.path ? `${file.path}/` : "";
-      // Construct the file key with the year/month/day/time structure
-      const structuredPath = `${year}/${month}/${day}/${time}/`;
-
       return `${filePrefix}${structuredPath}${path}${file.hash}${file.ext}`;
     };
 
@@ -95,10 +115,7 @@ export default {
           ...customParams,
         };
 
-        const onUploaded = (
-          err: Error,
-          data: AWS.S3.ManagedUpload.SendData
-        ) => {
+        const onUploaded = (err: Error, data: AWS.S3.ManagedUpload.SendData) => {
           if (err) {
             return reject(err);
           }
@@ -110,9 +127,7 @@ export default {
           } else {
             // Add the protocol if it is missing
             // Some providers like DigitalOcean Spaces return the url without the protocol
-            file.url = hasUrlProtocol(data.Location)
-              ? data.Location
-              : `https://${data.Location}`;
+            file.url = hasUrlProtocol(data.Location) ? data.Location : `https://${data.Location}`;
           }
           (file as any).key = fileKey;
           resolve();
@@ -131,11 +146,7 @@ export default {
           return { url: file.url };
         }
 
-        const signedUrlExpires: string = getOr(
-          15 * 60,
-          ["params", "signedUrlExpires"],
-          config
-        ); // 15 minutes
+        const signedUrlExpires: string = getOr(15 * 60, ["params", "signedUrlExpires"], config); // 15 minutes
 
         return new Promise((resolve, reject) => {
           const fileKey = getFileKey(file);
@@ -165,9 +176,7 @@ export default {
       delete(file: File, customParams = {}): Promise<void> {
         return new Promise((resolve, reject) => {
           // delete file on S3 bucket
-          const key = baseUrl
-            ? file.url.split(baseUrl)[1]?.substring(1)
-            : undefined;
+          const key = baseUrl ? file.url.split(baseUrl)[1]?.substring(1) : undefined;
           S3.deleteObject(
             {
               Key: key ?? file.name,
