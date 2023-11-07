@@ -1,20 +1,20 @@
 {
-  "name": "@kidsontheyard/provider-upload-aws-custom-s3",
-  "version": "4.15.1",
-  "description": "AWS custom S3 provider for strapi upload",
+  "name": "@kidsontheyard/provider-upload-aws-s3-extended",
+  "version": "1.0.0",
+  "description": "AWS S3 provider for strapi upload with extended functionality of organizing assets in s3 folder structure based on the time of upload",
   "keywords": [
     "upload",
     "aws",
     "s3",
     "strapi"
   ],
-  "homepage": "https://strapi.io",
+  "homepage": "https://github.com/kidsontheyard/strapi-provider-plugin-aws-s3-extended",
   "bugs": {
-    "url": "https://github.com/strapi/strapi/issues"
+    "url": "https://github.com/kidsontheyard/strapi-provider-plugin-aws-s3-extended/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/strapi/strapi.git"
+    "url": "https://github.com/kidsontheyard/strapi-provider-plugin-aws-s3-extended.git"
   },
   "license": "SEE LICENSE IN LICENSE",
   "author": {
@@ -27,6 +27,10 @@
       "name": "Strapi Solutions SAS",
       "email": "hi@strapi.io",
       "url": "https://strapi.io"
+    },
+    {
+      "name": "Kids on the Yard",
+      "url": "https://kidsontheyard.com"
     }
   ],
   "main": "./dist/index.js",
