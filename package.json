@@ -1,6 +1,6 @@
 {
   "name": "@kidsontheyard/provider-upload-aws-s3-extended",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "AWS S3 provider for strapi upload with extended functionality of organizing assets in s3 folder structure based on the time of upload",
   "keywords": [
     "upload",
