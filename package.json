@@ -50,7 +50,6 @@
     "watch": "pack-up watch"
   },
   "dependencies": {
-    "@kashif-ghafoor/provider-upload-aws-custom-s3": "^4.15.1",
     "aws-sdk": "2.1472.0",
     "lodash": "4.17.21"
   },

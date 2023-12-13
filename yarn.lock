@@ -505,14 +505,6 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@kashif-ghafoor/provider-upload-aws-custom-s3@^4.15.1":
-  version "4.15.1"
-  resolved "https://registry.yarnpkg.com/@kashif-ghafoor/provider-upload-aws-custom-s3/-/provider-upload-aws-custom-s3-4.15.1.tgz#7ac01d3e82cd8a412f6003fcddef721a8705c95a"
-  integrity sha512-bGXoU2kmx9x92wEuMEqPirNECtHAg6AC5EwHFlAnoegGOhnEkgztgrQ8W+Jy75rJyfMQpXClY70f06eb2cdovQ==
-  dependencies:
-    aws-sdk "2.1472.0"
-    lodash "4.17.21"
-
 "@next/eslint-plugin-next@12.3.4":
   version "12.3.4"
   resolved "https://registry.yarnpkg.com/@next/eslint-plugin-next/-/eslint-plugin-next-12.3.4.tgz#e7dc00e2e89ed361f111d687b8534483ec15518b"
